@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Hasil Kelulusan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        .lulus {
+            color: green;
+            font-weight: bold;
+        }
+        .tidak-lulus {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Hasil Kelulusan</h1>
+        <div id="hasil"></div>
+    </div>
+
+    <script>
+        // Contoh data kelulusan (bisa diperluas atau dihubungkan ke backend/API)
+        const dataKelulusan = [
+            { nama: "AFFAN TAUFIK HIDAYAT", nisn: "0072216192", status: "LULUS" },
+ 	    { nama: "AFFAN TAUFIK HIDAYAT", nisn: "0072216192", status: "LULUS" },
+            { nama: "AHMAD PEBRIYAN SYAH", nisn: "0092497240", status: "LULUS" },
+            { nama: "ALANDI MUHAMAD DANI", nisn: "0109321688", status: "LULUS" },
+	    { nama: "ALMIRA SERLY PRAMUDITA", nisn: "0096056381", status: "LULUS" },
+	    { nama: "ALFIN ARFIANSYAH", nisn: "0091452002", status: "LULUS" },
+	    { nama: "AMELYA PUTRI", nisn: "0093675955", status: "LULUS" },
+	    { nama: "CAHYA ACHMAD MUSYAFA", nisn: "0097294525", status: "LULUS" },
+	    { nama: "CHANDRA ANDIKA TAMA", nisn: "0097970685", status: "LULUS" },
+ 	    { nama: "ELOK MILDA LESTARI", nisn: "0102479995", status: "LULUS" },
+	    { nama: "FABIAN PRATAMA", nisn: "0103802156", status: "LULUS" },
+	    { nama: "FAJAR SUBAHUS SURUR", nisn: "0101362934", status: "LULUS" },
+	    { nama: "FERDYANSYAH", nisn: "0094858883", status: "LULUS" },
+	    { nama: "LOVFIS ALFINO", nisn: "0107373057", status: "LULUS" },
+	    { nama: "MUHAMMAD NUR FADZILLAH", nisn: "0101806780", status: "LULUS" },
+	    { nama: "MARSHA LIDYAWATI", nisn: "0093135016", status: "LULUS" },
+	    { nama: "MOH. ANANG RIFA'I", nisn: "0097265868", status: "LULUS" },
+	    { nama: "PIZA", nisn: "0097181011", status: "LULUS" },
+	    { nama: "RAHMA SELA SELVIANI", nisn: "0092369240", status: "LULUS" },
+	    { nama: "RAVA HADHA SAPUTRA", nisn: "0096240690", status: "LULUS" },
+	    { nama: "REZA IRVANDI", nisn: "0098830183", status: "LULUS" },
+	    { nama: "SATRIO PUTRA PRATAMA", nisn: "0101117992", status: "LULUS" },
+ 	    { nama: "SELENA AULIA PUTRI", nisn: "0106882883", status: "LULUS" },
+	    { nama: "SELLVI AMELIANI", nisn: "0097028330", status: "LULUS" },
+	    { nama: "SEPTIA RAMADHANI", nisn: "0085798068", status: "LULUS" },
+	    { nama: "UMU NAYLATUL HUSNA", nisn: "0107607330", status: "LULUS" },
+	    { nama: "WAHYU ARIF WICAKSONO", nisn: "0091768064", status: "LULUS" },
+	    { nama: "YANDES EFRIANZA", nisn: "0107682902", status: "LULUS" },
+	    { nama: "YULIA", nisn: "0079632661", status: "LULUS" },
+	    { nama: "AHMAD RIFAI AL HAFIDZ", nisn: "0096982985", status: "LULUS" },
+	    { nama: "AKBAR DIANDRA PUTRA", nisn: "0094696056", status: "LULUS" },
+	    { nama: "ARBI DWI ANDIKA", nisn: "0109774134", status: "LULUS" },
+	    { nama: "ARDELIA DWI RANTIKA", nisn: "0098426958", status: "LULUS" },
+	    { nama: "AUREL YULIA ALFINA", nisn: "0085916542", status: "LULUS" },
+	    { nama: "AZZAHRA NADHIFAHTUL ANIDA", nisn: "0095585887", status: "LULUS" },
+	    { nama: "DAFVA TRI PRASETIYO", nisn: "0097983965", status: "LULUS" },
+	    { nama: "DEA AYU KUMALASARI", nisn: "0093480368", status: "LULUS" },
+	    { nama: "FADHIL YUGA FEBRIANSYAH", nisn: "0103846483", status: "LULUS" },
+	    { nama: "FADHIL SYARIF ALVINO", nisn: "0102167117", status: "LULUS" },
+	    { nama: "GISELA FEBRY HAFIIZHA", nisn: "0107967938", status: "LULUS" },
+	    { nama: "KEVIN TIO PRATAMA", nisn: "0091408833", status: "LULUS" },
+	    { nama: "KUSTANDI", nisn: "0094182607", status: "LULUS" },
+	    { nama: "LAILA SIPA RAHAYU", nisn: "0096147104", status: "LULUS" },
+	    { nama: "LAILI MUTTIA HUMAIROH", nisn: "0095896023", status: "LULUS" },
+	    { nama: "M.  ZAKRI MARIADI", nisn: "0096611530", status: "LULUS" },
+	    { nama: "M. ARDIAN HP", nisn: "0095677612", status: "LULUS" },
+	    { nama: "MUHAMMAD AKHDAN HANAFI", nisn: "0097479087", status: "LULUS" },
+	    { nama: "NINTA FRIYANI", nisn: "0095922023", status: "LULUS" },
+	    { nama: "RIKI ALDIAN", nisn: "0093667907", status: "LULUS" },
+	    { nama: "RIZAL NUR FUADI", nisn: "0108136441", status: "LULUS" },
+	    { nama: "RIZKY ADITYA PRATAMA", nisn: "0095008669", status: "LULUS" },
+	    { nama: "SAFATU ASSIFA QALBINA", nisn: "0105080399", status: "LULUS" },
+	    { nama: "SHERIN NOVA ELIZA", nisn: "0096687539", status: "LULUS" },
+	    { nama: "SYAQILLA ALIFA DINDA", nisn: "0092176049", status: "LULUS" },
+	    { nama: "WANDI ARIANSYAH", nisn: "0102179343", status: "LULUS" },
+	    { nama: "YOZI RAMADHAN AFARI", nisn: "0096822736", status: "LULUS" },
+            { nama: "Siti Aminah", nisn: "9876543210", status: "TIDAK LULUS" }
+        ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const namaInput = urlParams.get('nama');
+        const nisnInput = urlParams.get('nisn');
+
+        const hasilDiv = document.getElementById("hasil");
+        const siswa = dataKelulusan.find(s =>
+            s.nama.toLowerCase() === namaInput.toLowerCase() &&
+            s.nisn === nisnInput
+        );
+
+        if (siswa) {
+            hasilDiv.innerHTML = `
+                <p>Nama: <strong>${siswa.nama}</strong></p>
+                <p>NISN: <strong>${siswa.nisn}</strong></p>
+                <p class="${siswa.status === 'LULUS' ? 'lulus' : 'tidak-lulus'}">
+                    Anda dinyatakan: ${siswa.status}
+                </p>
+            `;
+        } else {
+            hasilDiv.innerHTML = `
+                <p>Data tidak ditemukan. Pastikan nama dan NISN sesuai.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
