@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="id">
+
+
 <head>
     <meta charset="UTF-8">
     <title>Pengumuman Kelulusan - SMP Negeri 3 Pangkalan Lesung</title>
